@@ -35,28 +35,28 @@ public class LoginSystem {
          *
          * if (login("myPassword","thisIsMyUsername")){
          * System.out.println("success"); }else{ System.out.println("bad"); }
+         *
+         *
+         * if (isUnique("thisIsMyUsername")) { System.out.println("is unique");
+         * } else { System.out.println("not unique"); } if
+         * (isStrongPassword("Ykppfw4m")) { System.out.println("is strong"); }
+         * else { System.out.println("not strong"); }
          
 
-        if (isUnique("thisIsMyUsername")) {
-            System.out.println("is unique");
-        } else {
-            System.out.println("not unique");
-        }
-        if (isStrongPassword("Ykppfw4m")) {
-            System.out.println("is strong");
-        } else {
-            System.out.println("not strong");
+        System.out.println(register("new", "Wickens", "34083911778696789","Ykppfw4m", "myEmail"));
+        
+        if (isBanned("abacination")){
+            System.out.println("banned");
+        }else{
+            System.out.println("not banned");
         }
         */
-        
-        //System.out.println(register("new", "Wickens", "34083911778696789","Ykppfw4m", "myEmail"));
-
     }
 
     public static int register(String firstName, String lastName, String username, String password, String email) {
         if (!isUnique(username)) {
             return 1;
-        } else if (!isStrongPassword(password)) {
+        } else if (!isStrongPassword(password)&& isBanned(password) && !isDelimiterFree(password)) {
             return 2;
         } else {
             try {
@@ -150,19 +150,31 @@ public class LoginSystem {
         }
         return (password.length() >= 8 && uppercase && lowercase && number);
     }
-    /**
-     * public boolean isBanned(String password){ try{ File bannedPass = new
-     * File("dictbadpass.txt"); Scanner s = new Scanner(bannedPass); while
-     * (s.hasNext()){ if (s.nextLine().equals(password)){ return true; }else{
-     * return false; }
-     *
-     * }
-     * s.close(); }catch(IOException e){ System.out.println("File not found");
-     * return true; } //} public void loaduser(){
-     *
-     * }
-     * public void delimiterFree(){
-     *
-     * }
-     */
+
+    public static boolean isBanned(String password) {
+        try {
+            File bannedPass = new File("dictbadpass.txt");
+            Scanner s = new Scanner(bannedPass);
+            while (s.hasNext()) {
+                if (s.nextLine().equals(password)) {
+                    return true;
+                }
+            }
+            s.close();
+        } catch (IOException e) {
+            System.out.println("File not found");
+            return true;
+        } //} public void loaduser(){
+        return false;
+    }
+
+    public static boolean isDelimiterFree(String password) {
+        for(int i=0; i<password.length();i++){
+            if (password.contains(DELIMITER)){
+                return false;
+            }
+        }
+        return false;
+    }
+
 }
