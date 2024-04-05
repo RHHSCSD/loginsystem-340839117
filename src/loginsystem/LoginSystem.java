@@ -23,53 +23,42 @@ public class LoginSystem {
      */
     public static void main(String[] args) {
         /**
-         register("new", "Wickens", "gresgsfd", "grsegfdsg", "myEmail");
-         register("new", "Wickens", "hello", "bonjour", "myEmail");
-         register("new", "Wickens", "im not really sure", "i think so",
-         "myEmail"); register("new", "Wickens", "gfsdgfsdgre", "bfgwdfsgf",
-         "myEmail"); register("new", "Wickens", "thisIsMyUsername",
-         "myPassword", "myEmail"); register("new", "Wickens", "rgewgesdgf",
-         "myPassyturhword", "myEmail"); register("new", "Wickens",
-         "gsdrggers", "hrtdgfhdg", "myEmail"); register("new", "Wickens",
-         "gserfgers", "sergsfdg", "myEmail");
-         
-          * if (login("myPassword","thisIsMyUsername")){
-          System.out.println("success"); }else{ System.out.println("bad"); }
-         
-         
+         * register("new", "Wickens", "gresgsfd", "grsegfdsg", "myEmail");
+         * register("new", "Wickens", "hello", "bonjour", "myEmail");
+         * register("new", "Wickens", "im not really sure", "i think so",
+         * "myEmail"); register("new", "Wickens", "gfsdgfsdgre", "bfgwdfsgf",
+         * "myEmail"); register("new", "Wickens", "thisIsMyUsername",
+         * "myPassword", "myEmail"); register("new", "Wickens", "rgewgesdgf",
+         * "myPassyturhword", "myEmail"); register("new", "Wickens",
+         * "gsdrggers", "hrtdgfhdg", "myEmail"); register("new", "Wickens",
+         * "gserfgers", "sergsfdg", "myEmail");
+         *
+         * if (login("myPassword","thisIsMyUsername")){
+         * System.out.println("success"); }else{ System.out.println("bad"); }
+         *
+         *
          * if (isUnique("thisIsMyUsername")) { System.out.println("is unique");
          * } else { System.out.println("not unique"); } if
          * (isStrongPassword("Ykppfw4m")) { System.out.println("is strong"); }
          * else { System.out.println("not strong"); }
          */
-        
+
         //System.out.println(register("new", "Wickens", "ghjsruioap","Ykppfw4m.", "myEmail"));
         /**
-        if (isStrongPassword("Ykppfw4m")){
-            System.out.println("it is strong");
-        }
-        if(isBanned("Ykppfw4m")){
-            System.out.println("it is banned");
-        }
-        if(isDelimiterFree("Ykppfw4m")){
-            System.out.println("is d free");
-        }
-        if (!isDelimiterFree("Ykppfw4m")){
-            System.out.println("not d free");
-        }
-        //if (isBanned("abacination")){
-      //      System.out.println("banned");
-      //  }else{
-      //      System.out.println("not banned");
-     //   }
-      */
-        
+         * if (isStrongPassword("Ykppfw4m")){ System.out.println("it is
+         * strong"); } if(isBanned("Ykppfw4m")){ System.out.println("it is
+         * banned"); } if(isDelimiterFree("Ykppfw4m")){ System.out.println("is d
+         * free"); } if (!isDelimiterFree("Ykppfw4m")){ System.out.println("not
+         * d free"); } //if (isBanned("abacination")){ //
+         * System.out.println("banned"); // }else{ // System.out.println("not
+         * banned"); // }
+         */
     }
 
     public static int register(String firstName, String lastName, String username, String password, String email) {
         if (!isUnique(username)) {
             return 1;
-        } else if (!isStrongPassword(password)|| isBanned(password) || !isDelimiterFree(password)) {
+        } else if (!isStrongPassword(password) || isBanned(password) || !isDelimiterFree(password)) {
             return 2;
         } else {
             try {
@@ -152,7 +141,7 @@ public class LoginSystem {
         boolean number = false;
         boolean specialChar = false;
         String specialChars = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿×÷";
-        
+
         for (int i = 0; i < password.length(); i++) {
             char current = password.charAt(i);
             if (Character.isUpperCase(current)) {
@@ -165,10 +154,10 @@ public class LoginSystem {
                 number = true;
             }
             if (specialChars.indexOf(current) != -1) {
-            specialChar = true;
+                specialChar = true;
+            }
         }
-        }
-        return (password.length() >= 8 && uppercase && lowercase && number && specialChar );
+        return (password.length() >= 8 && uppercase && lowercase && number && specialChar);
     }
 
     public static boolean isBanned(String password) {
@@ -189,8 +178,8 @@ public class LoginSystem {
     }
 
     public static boolean isDelimiterFree(String password) {
-        for(int i=0; i<password.length();i++){
-            if (password.contains(DELIMITER)){
+        for (int i = 0; i < password.length(); i++) {
+            if (password.contains(DELIMITER)) {
                 return false;
             }
         }

@@ -48,7 +48,7 @@
                               <Component id="regLastName" alignment="0" max="32767" attributes="0"/>
                               <Component id="regEmail" alignment="0" max="32767" attributes="0"/>
                               <Component id="regUsername" alignment="0" max="32767" attributes="0"/>
-                              <Component id="regPassword" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
+                              <Component id="regPassword" alignment="0" pref="177" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -149,11 +149,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="regUsername">
     </Component>
-    <Component class="javax.swing.JTextField" name="regPassword">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="regPasswordActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="regLable">
       <Properties>
         <Property name="text" type="java.lang.String" value="Please enter your information below. Once assuring it is correct, confirm with the Register button."/>
@@ -163,6 +158,11 @@
       <Properties>
         <Property name="text" type="java.lang.String" value=" "/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="regPassword">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="regPasswordActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

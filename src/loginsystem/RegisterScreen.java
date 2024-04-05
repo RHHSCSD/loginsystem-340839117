@@ -36,9 +36,9 @@ public class RegisterScreen extends javax.swing.JFrame {
         regLastName = new javax.swing.JTextField();
         regEmail = new javax.swing.JTextField();
         regUsername = new javax.swing.JTextField();
-        regPassword = new javax.swing.JTextField();
         regLable = new javax.swing.JLabel();
         regLable2 = new javax.swing.JLabel();
+        regPassword = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,15 +71,15 @@ public class RegisterScreen extends javax.swing.JFrame {
             }
         });
 
+        regLable.setText("Please enter your information below. Once assuring it is correct, confirm with the Register button.");
+
+        regLable2.setText(" ");
+
         regPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regPasswordActionPerformed(evt);
             }
         });
-
-        regLable.setText("Please enter your information below. Once assuring it is correct, confirm with the Register button.");
-
-        regLable2.setText(" ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,7 +107,7 @@ public class RegisterScreen extends javax.swing.JFrame {
                                 .addComponent(regLastName)
                                 .addComponent(regEmail)
                                 .addComponent(regUsername)
-                                .addComponent(regPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(regPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(23, Short.MAX_VALUE)
