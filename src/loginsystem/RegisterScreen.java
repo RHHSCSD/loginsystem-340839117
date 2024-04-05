@@ -36,7 +36,9 @@ public class RegisterScreen extends javax.swing.JFrame {
         regLastName = new javax.swing.JTextField();
         regEmail = new javax.swing.JTextField();
         regUsername = new javax.swing.JTextField();
-        RegPassword = new javax.swing.JTextField();
+        regPassword = new javax.swing.JTextField();
+        regLable = new javax.swing.JLabel();
+        regLable2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,42 +71,57 @@ public class RegisterScreen extends javax.swing.JFrame {
             }
         });
 
-        RegPassword.addActionListener(new java.awt.event.ActionListener() {
+        regPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegPasswordActionPerformed(evt);
+                regPasswordActionPerformed(evt);
             }
         });
+
+        regLable.setText("Please enter your information below. Once assuring it is correct, confirm with the Register button.");
+
+        regLable2.setText(" ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(116, 116, 116)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
+                        .addGap(106, 106, 106)
                         .addComponent(RegConfirm))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RegPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(regUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(regEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(regLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(regFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(118, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(regLable2)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addGap(60, 60, 60)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(regFirstName)
+                                .addComponent(regLastName)
+                                .addComponent(regEmail)
+                                .addComponent(regUsername)
+                                .addComponent(regPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addComponent(regLable)
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(regLable, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(regLable2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(regFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -114,8 +131,8 @@ public class RegisterScreen extends javax.swing.JFrame {
                     .addComponent(regLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(regEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(regEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -123,17 +140,35 @@ public class RegisterScreen extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(RegPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(regPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(RegConfirm)
-                .addGap(47, 47, 47))
+                .addGap(17, 17, 17))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegConfirmActionPerformed
-        // TODO add your handling code here:
+        int result = LoginSystem.register(regFirstName.getText(), regLastName.getText(), regUsername.getText(), regPassword.getText(), regEmail.getText());
+        if (result == 1){
+            regLable.setText("Username is already in use. Please try another.");
+            regLable2.setText(" ");
+        }else if (result==2){
+            regLable.setText("Password must be 8 characters long, include a lowercase letter, uppercase letter, and a number.");
+            regLable2.setText("It must not include commas and not be easly guessed.");
+        }else if (result==3){
+            regLable.setText("You have sucessfully registered");
+            regLable2.setText(" ");
+        }else if (result==4){
+            regLable.setText("There has been an error registering this user. Please try again");
+            regLable2.setText(" ");
+        }
+
+
+
+
+
     }//GEN-LAST:event_RegConfirmActionPerformed
 
     private void regFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regFirstNameActionPerformed
@@ -144,9 +179,9 @@ public class RegisterScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_regLastNameActionPerformed
 
-    private void RegPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegPasswordActionPerformed
+    private void regPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_RegPasswordActionPerformed
+    }//GEN-LAST:event_regPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,7 +220,6 @@ public class RegisterScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton RegConfirm;
-    private javax.swing.JTextField RegPassword;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -193,7 +227,10 @@ public class RegisterScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField regEmail;
     private javax.swing.JTextField regFirstName;
+    private javax.swing.JLabel regLable;
+    private javax.swing.JLabel regLable2;
     private javax.swing.JTextField regLastName;
+    private javax.swing.JTextField regPassword;
     private javax.swing.JTextField regUsername;
     // End of variables declaration//GEN-END:variables
 }
