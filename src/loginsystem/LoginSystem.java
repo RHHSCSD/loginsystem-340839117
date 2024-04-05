@@ -41,10 +41,10 @@ public class LoginSystem {
          * } else { System.out.println("not unique"); } if
          * (isStrongPassword("Ykppfw4m")) { System.out.println("is strong"); }
          * else { System.out.println("not strong"); }
-         
+         */
         
-        System.out.println(register("new", "Wickens", "34083dfgbgbsdfdfgf91177fdsafdsafdasfdaf8696789","Ykppfw4m", "myEmail"));
-        
+        //System.out.println(register("new", "Wickens", "ghjsruioap","Ykppfw4m.", "myEmail"));
+        /**
         if (isStrongPassword("Ykppfw4m")){
             System.out.println("it is strong");
         }
@@ -150,18 +150,25 @@ public class LoginSystem {
         boolean uppercase = false;
         boolean lowercase = false;
         boolean number = false;
+        boolean specialChar = false;
+        String specialChars = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿×÷";
+        
         for (int i = 0; i < password.length(); i++) {
-            if (Character.isUpperCase(password.charAt(i))) {
+            char current = password.charAt(i);
+            if (Character.isUpperCase(current)) {
                 uppercase = true;
             }
-            if (Character.isLowerCase(password.charAt(i))) {
+            if (Character.isLowerCase(current)) {
                 lowercase = true;
             }
-            if (Character.isDigit(password.charAt(i))) {
+            if (Character.isDigit(current)) {
                 number = true;
             }
+            if (specialChars.indexOf(current) != -1) {
+            specialChar = true;
         }
-        return (password.length() >= 8 && uppercase && lowercase && number);
+        }
+        return (password.length() >= 8 && uppercase && lowercase && number && specialChar );
     }
 
     public static boolean isBanned(String password) {
