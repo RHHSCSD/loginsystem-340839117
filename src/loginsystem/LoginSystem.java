@@ -41,19 +41,25 @@ public class LoginSystem {
      * error reading from the file of banned passwords.
      */
     public static int register(String firstName, String lastName, String username, String password, String email) {
+        // if isUnique does not return true, return one
         if (!isUnique(username)) {
             return 1;
-        } else if (!isStrongPassword(password) || isBanned(password) || !isDelimiterFree(password)) {
+        } // if the password is not strong, banned or contains the delimiter, return two
+        else if (!isStrongPassword(password) || isBanned(password) || !isDelimiterFree(password)) {
             return 2;
         } else {
             try {
+                //Create an instance of print writer to append to the UserInfo file
                 PrintWriter pw = new PrintWriter(new FileWriter(USER_INFO_FILE, true));
+                // Write user information to the file with delimiters
                 pw.println(firstName + DELIMITER + lastName + DELIMITER + username + DELIMITER + encrypt(password) + DELIMITER + email);
                 pw.close();
                 System.out.println("Registration successful.");
+                //return 3 to indicate successful registration
                 return 3;
             } catch (IOException e) {
                 System.err.println("Error occured wrighting to the file");
+                //return 4 to indicate errors
                 return 4;
             }
         }
@@ -70,17 +76,22 @@ public class LoginSystem {
     public static boolean login(String password, String username) {
         Scanner s = null;
         try {
+            //open new scanner from the UserInfo file
             s = new Scanner(USER_INFO_FILE);
+            //while the file has a next line
             while (s.hasNext()) {
+                //create a string array containing the elements from that line of the file
                 String line = s.nextLine();
                 String[] userInfo = line.split(DELIMITER);
+                //Check if the inputted username & password matches a username & password from the file
                 if (userInfo[2].equals(username) && userInfo[3].equals(encrypt(password))) {
+                    //rweturn true if a match is found
                     return true;
                 }
             }
         } catch (IOException e) {
             System.out.println("Error Reading File");
-            return false;
+            return false;// return the 
         }
         if (s != null) {
             s.close();
@@ -212,7 +223,7 @@ public class LoginSystem {
         } catch (IOException e) {
             System.out.println("File not found");
             return true;
-        } 
+        }
         return false;
     }
 
