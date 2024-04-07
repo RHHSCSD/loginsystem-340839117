@@ -23,6 +23,12 @@ public class LoginSystem {
      */
     public static void main(String[] args) {
         // Nothing is found in this meain method
+        ArrayList<User> users = loadUser();
+        
+        
+        if (true){
+            System.out.println("im not really sure");
+        }
     }
 
     /**
@@ -104,12 +110,12 @@ public class LoginSystem {
      */
     public static String encrypt(String password) {
         try {
-//java helper class to perform encryption 
+            //java helper class to perform encryption 
             MessageDigest md = MessageDigest.getInstance("SHA-256"); //give the helper function the password 
             md.update(password.getBytes());
-//perform the encryption 
+            //perform the encryption 
             byte byteData[] = md.digest();
-//To express the byte data as a hexadecimal number (the normal way) 
+            //To express the byte data as a hexadecimal number (the normal way) 
             String encryptedPassword = "";
             for (int i = 0; i < byteData.length; ++i) {
                 encryptedPassword += (Integer.toHexString((byteData[i] & 0xFF) | 0x100).substring(1, 3));
@@ -127,10 +133,11 @@ public class LoginSystem {
      * @return an array list of users
      */
     public static ArrayList<User> loadUser() {
+        //Create an empty array list of users
         ArrayList<User> users = new ArrayList<User>();
-        Scanner s = null;
+        
         try {
-            s = new Scanner(USER_INFO_FILE);
+            Scanner s = new Scanner(USER_INFO_FILE);
             while (s.hasNext()) {
                 String line = s.nextLine();
                 String[] userInfo = line.split(DELIMITER);
