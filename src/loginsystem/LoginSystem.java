@@ -23,12 +23,6 @@ public class LoginSystem {
      */
     public static void main(String[] args) {
         // Nothing is found in this meain method
-        ArrayList<User> users = loadUser();
-        
-        
-        if (true){
-            System.out.println("im not really sure");
-        }
     }
 
     /**
@@ -135,17 +129,20 @@ public class LoginSystem {
     public static ArrayList<User> loadUser() {
         //Create an empty array list of users
         ArrayList<User> users = new ArrayList<User>();
-        
         try {
             Scanner s = new Scanner(USER_INFO_FILE);
+            //While the text file has a next line, turn that next line into a string.
             while (s.hasNext()) {
                 String line = s.nextLine();
+                //split the string where the delimiter is present into a string array
                 String[] userInfo = line.split(DELIMITER);
+                //call the User constructor with the string array input
                 users.add(new User(userInfo));
             }
         } catch (IOException e) {
             System.out.println("Error Reading From File");
         }
+        //return the filled array list of users
         return users;
     }
 
@@ -156,9 +153,9 @@ public class LoginSystem {
      * @return true if the username is unique, false if not
      */
     public static boolean isUnique(String username) {
-        Scanner s = null;
+        
         try {
-            s = new Scanner(USER_INFO_FILE);
+            Scanner s = new Scanner(USER_INFO_FILE);
             while (s.hasNext()) {
                 String line = s.nextLine();
                 String[] userInfo = line.split(DELIMITER);
@@ -166,13 +163,12 @@ public class LoginSystem {
                     return false;
                 }
             }
+            s.close();
         } catch (IOException e) {
             System.out.println("Error Reading File");
             return false;
         }
-        if (s != null) {
-            s.close();
-        }
+        
         return true;
     }
 
