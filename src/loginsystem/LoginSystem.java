@@ -74,10 +74,9 @@ public class LoginSystem {
      * @return true if username and password are valid, false if not.
      */
     public static boolean login(String password, String username) {
-        Scanner s = null;
         try {
             //open new scanner from the UserInfo file
-            s = new Scanner(USER_INFO_FILE);
+            Scanner s = new Scanner(USER_INFO_FILE);
             //while the file has a next line
             while (s.hasNext()) {
                 //create a string array containing the elements from that line of the file
@@ -85,18 +84,16 @@ public class LoginSystem {
                 String[] userInfo = line.split(DELIMITER);
                 //Check if the inputted username & password matches a username & password from the file
                 if (userInfo[2].equals(username) && userInfo[3].equals(encrypt(password))) {
-                    //rweturn true if a match is found
+                    //return true if a match is found
                     return true;
                 }
             }
+            s.close();
         } catch (IOException e) {
             System.out.println("Error Reading File");
-            return false;// return the 
+            return false;// return false indicating login failure
         }
-        if (s != null) {
-            s.close();
-        }
-        return false;
+        return false; // return false if no match is found
     }
 
     /**
