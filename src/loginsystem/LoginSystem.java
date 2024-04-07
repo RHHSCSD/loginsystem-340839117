@@ -16,26 +16,35 @@ import java.util.*;
 public class LoginSystem {
 
     private static final String DELIMITER = ",";
-    private static final File f = new File("UserInfo.txt");
+    private static final File USER_INFO_FILE = new File("UserInfo.txt");
+    private static final File BANNED_PASSWORD_FILE = new File("dictbadpass.txt");
+
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /**
-         * register("new", "Wickens", "gresgsfd", "grsegfdsg", "myEmail");
-         * register("new", "Wickens", "hello", "bonjour", "myEmail");
-         * register("new", "Wickens", "im not really sure", "i think so",
-         * "myEmail"); register("new", "Wickens", "gfsdgfsdgre", "bfgwdfsgf",
-         * "myEmail"); register("new", "Wickens", "thisIsMyUsername",
-         * "myPassword", "myEmail"); register("new", "Wickens", "rgewgesdgf",
-         * "myPassyturhword", "myEmail"); register("new", "Wickens",
-         * "gsdrggers", "hrtdgfhdg", "myEmail"); register("new", "Wickens",
-         * "gserfgers", "sergsfdg", "myEmail");
-         *
-         * if (login("myPassword","thisIsMyUsername")){
-         * System.out.println("success"); }else{ System.out.println("bad"); }
-         *
+        
+          register("new", "Wickens", "gresgsfd", "grsegfdsg", "myEmail");
+          register("new", "Wickens", "hello", "bonjour", "myEmail");
+          register("new", "Wickens", "im not really sure", "i think so",
+          "myEmail"); register("new", "Wickens", "gfsdgfsdgre", "bfgwdfsgf",
+          "myEmail"); register("new", "Wickens", "thisIsMyUsername",
+          "myPassword", "myEmail"); register("new", "Wickens", "rgewgesdgf",
+          "myPassyturhword", "myEmail"); register("new", "Wickens",
+          "gsdrggers", "hrtdgfhdg", "myEmail"); register("new", "Wickens",
+          "gserfgers", "sergsfdg", "myEmail");
+          
+          
+          ArrayList<User> testarray = setUserList();
+         
+          
+          
+          if (login("myPassword","thisIsMyUsername")){
+          System.out.println("success"); }else{ System.out.println("bad"); }
+         
+          
+          /**
          *
          * if (isUnique("thisIsMyUsername")) { System.out.println("is unique");
          * } else { System.out.println("not unique"); } if
@@ -62,7 +71,7 @@ public class LoginSystem {
             return 2;
         } else {
             try {
-                PrintWriter pw = new PrintWriter(new FileWriter(f, true));
+                PrintWriter pw = new PrintWriter(new FileWriter(USER_INFO_FILE, true));
                 pw.println(firstName + DELIMITER + lastName + DELIMITER + username + DELIMITER + encrypt(password) + DELIMITER + email);
                 pw.close();
                 System.out.println("Registration successful.");
@@ -77,7 +86,7 @@ public class LoginSystem {
     public static boolean login(String password, String username) {
         Scanner s = null;
         try {
-            s = new Scanner(f);
+            s = new Scanner(USER_INFO_FILE);
             while (s.hasNext()) {
                 String line = s.nextLine();
                 String[] userInfo = line.split(DELIMITER);
@@ -113,11 +122,27 @@ public class LoginSystem {
             return "ERROR";
         }
     }
+    
+    public static ArrayList<User> setUserList(){
+        ArrayList<User> users = new ArrayList<User>();
+        Scanner s = null;
+        try {
+            s = new Scanner(USER_INFO_FILE);
+            while (s.hasNext()) {
+                String line = s.nextLine();
+                String[] userInfo = line.split(DELIMITER);
+                users.add(new User(userInfo));
+            }
+        } catch (IOException e) {
+            System.out.println("Error Reading From File");
+        }
+        return users;
+    }
 
     public static boolean isUnique(String username) {
         Scanner s = null;
         try {
-            s = new Scanner(f);
+            s = new Scanner(USER_INFO_FILE);
             while (s.hasNext()) {
                 String line = s.nextLine();
                 String[] userInfo = line.split(DELIMITER);
@@ -162,8 +187,7 @@ public class LoginSystem {
 
     public static boolean isBanned(String password) {
         try {
-            File bannedPass = new File("dictbadpass.txt");
-            Scanner s = new Scanner(bannedPass);
+            Scanner s = new Scanner(BANNED_PASSWORD_FILE);
             while (s.hasNext()) {
                 if (s.nextLine().equals(password)) {
                     return true;

@@ -14,7 +14,6 @@ public class User {
     private String username;
     private String password;
     private String email;
-    private static int idSave = 1;
     
     /**
      * A constructor to create a new instance of User
@@ -22,6 +21,7 @@ public class User {
      * @param lastName the last name of the user
      * @param username the users inputted id
      * @param password the users inputted password
+     * @param email
      */
     public User(String firstName, String lastName, String username, String password, String email){
         this.firstName = firstName;
@@ -35,10 +35,22 @@ public class User {
      * @param userInput a string of information to set the fields too
      */
     public User(String[] userInput){
-        this.firstName = userInput[1];
-        this.lastName = userInput[2];
-        this.email = userInput[3];
-        this.username = userInput[4];
-        this.password = userInput[5];
+        this.firstName = userInput[0];
+        this.lastName = userInput[1];
+        this.email = userInput[2];
+        this.username = userInput[3];
+        this.password = userInput[4];
+    }
+    public String getFirstName(){
+        return firstName;
+    }
+    public String getLastName(){
+        return lastName;
+    }
+    public String getUsername(){
+        return username;
+    }
+    public String getEmail(){
+        return email;
     }
 }
