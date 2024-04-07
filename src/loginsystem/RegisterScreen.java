@@ -151,22 +151,19 @@ public class RegisterScreen extends javax.swing.JFrame {
 
     private void RegConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegConfirmActionPerformed
         int result = LoginSystem.register(regFirstName.getText(), regLastName.getText(), regUsername.getText(), regPassword.getText(), regEmail.getText());
-        if (result == 1){
+        if (result == 1) {
             regLable.setText("Username is already in use. Please try another.");
             regLable2.setText(" ");
-        }else if (result==2){
+        } else if (result == 2) {
             regLable.setText("Password must be 8 characters long, include a lowercase letter, uppercase letter, and a number.");
             regLable2.setText("It must not include commas and not be easly guessed.");
-        }else if (result==3){
+        } else if (result == 3) {
             regLable.setText("You have sucessfully registered");
             regLable2.setText(" ");
-        }else if (result==4){
+        } else if (result == 4) {
             regLable.setText("There has been an error registering this user. Please try again");
             regLable2.setText(" ");
         }
-
-
-
 
 
     }//GEN-LAST:event_RegConfirmActionPerformed

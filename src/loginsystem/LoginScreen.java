@@ -118,7 +118,8 @@ public class LoginScreen extends javax.swing.JFrame {
             loginMessage.setText("You are successfully logged in!");
         } else {
             loginMessage.setText("Ussername or Password did not match. Please try again:");
-        }    }//GEN-LAST:event_loginConfirmActionPerformed
+        }
+    }//GEN-LAST:event_loginConfirmActionPerformed
 
     private void loginUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
 

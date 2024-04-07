@@ -19,39 +19,41 @@ public class LoginSystem {
     private static final File USER_INFO_FILE = new File("UserInfo.txt");
     private static final File BANNED_PASSWORD_FILE = new File("dictbadpass.txt");
 
-
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-          register("new", "Wickens", "gresgsfd", "grsegfdsg", "myEmail");
-          register("new", "Wickens", "hello", "bonjour", "myEmail");
-          register("new", "Wickens", "im not really sure", "i think so",
-          "myEmail"); register("new", "Wickens", "gfsdgfsdgre", "bfgwdfsgf",
-          "myEmail"); register("new", "Wickens", "thisIsMyUsername",
-          "myPassword", "myEmail"); register("new", "Wickens", "rgewgesdgf",
-          "myPassyturhword", "myEmail"); register("new", "Wickens",
-          "gsdrggers", "hrtdgfhdg", "myEmail"); register("new", "Wickens",
-          "gserfgers", "sergsfdg", "myEmail");
-          
-          
-          ArrayList<User> testarray = setUserList();
-         
-          
-          
-          if (login("myPassword","thisIsMyUsername")){
-          System.out.println("success"); }else{ System.out.println("bad"); }
-         
-          
-          /**
+
+        register("new", "Wickens", "gresgsfd", "grsegfdsg", "myEmail");
+        register("new", "Wickens", "hello", "bonjour", "myEmail");
+        register("new", "Wickens", "im not really sure", "i think so",
+                "myEmail");
+        register("new", "Wickens", "gfsdgfsdgre", "bfgwdfsgf",
+                "myEmail");
+        register("new", "Wickens", "thisIsMyUsername",
+                "myPassword", "myEmail");
+        register("new", "Wickens", "rgewgesdgf",
+                "myPassyturhword", "myEmail");
+        register("new", "Wickens",
+                "gsdrggers", "hrtdgfhdg", "myEmail");
+        register("new", "Wickens",
+                "gserfgers", "sergsfdg", "myEmail");
+
+        ArrayList<User> testarray = setUserList();
+
+        if (login("myPassword", "thisIsMyUsername")) {
+            System.out.println("success");
+        } else {
+            System.out.println("bad");
+        }
+
+        /**
          *
          * if (isUnique("thisIsMyUsername")) { System.out.println("is unique");
          * } else { System.out.println("not unique"); } if
          * (isStrongPassword("Ykppfw4m")) { System.out.println("is strong"); }
          * else { System.out.println("not strong"); }
          */
-
         //System.out.println(register("new", "Wickens", "ghjsruioap","Ykppfw4m.", "myEmail"));
         /**
          * if (isStrongPassword("Ykppfw4m")){ System.out.println("it is
@@ -122,8 +124,8 @@ public class LoginSystem {
             return "ERROR";
         }
     }
-    
-    public static ArrayList<User> setUserList(){
+
+    public static ArrayList<User> setUserList() {
         ArrayList<User> users = new ArrayList<User>();
         Scanner s = null;
         try {
