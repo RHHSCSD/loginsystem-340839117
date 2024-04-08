@@ -38,16 +38,19 @@ public class LoginSystem {
      * @return an integer based on the result of attempting to register a new
      * user. 1 means the username is already in use. 2 means the password is
      * invalid. 3 means the registration was successful. 4 means there was an
-     * error reading from the file of banned passwords.
+     * error reading from the file of banned passwords. 5 means one of the inputs contains the delimiter
      */
     public static int register(String firstName, String lastName, String username, String password, String email) {
         // if isUnique does not return true, return one
         if (!isUnique(username)) {
             return 1;
-        } // if the password is not strong, banned or contains the delimiter, return two
-        else if (!isStrongPassword(password) || isBanned(password) || !isDelimiterFree(password)) {
+        } // if the password is not strongor is banned, return 2
+        else if (!isStrongPassword(password) || isBanned(password)) {
             return 2;
-        } else {
+            //if any of the imputs contain the delimiter, return 5.
+        }else if(!isDelimiterFree(password) || !isDelimiterFree(firstName)|| !isDelimiterFree(lastName)|| !isDelimiterFree(username)|| !isDelimiterFree(email) ){
+            return 5;
+        }else {
             try {
                 //Create an instance of print writer to append to the UserInfo file
                 PrintWriter pw = new PrintWriter(new FileWriter(USER_INFO_FILE, true));
@@ -153,12 +156,15 @@ public class LoginSystem {
      * @return true if the username is unique, false if not
      */
     public static boolean isUnique(String username) {
-        
+
         try {
             Scanner s = new Scanner(USER_INFO_FILE);
+            //While the text file has a next line, turn that next line into a string.
             while (s.hasNext()) {
                 String line = s.nextLine();
+                //split the string where the delimiter is present into a string array
                 String[] userInfo = line.split(DELIMITER);
+                // if the current username matches a previous one, return false
                 if (userInfo[2].equals(username)) {
                     return false;
                 }
@@ -168,7 +174,7 @@ public class LoginSystem {
             System.out.println("Error Reading File");
             return false;
         }
-        
+        // if no mathces are found, return true
         return true;
     }
 
@@ -236,6 +242,7 @@ public class LoginSystem {
      * @return true if the password is delimiter free, false if not
      */
     public static boolean isDelimiterFree(String password) {
+        //for every character in 
         for (int i = 0; i < password.length(); i++) {
             if (password.contains(DELIMITER)) {
                 return false;

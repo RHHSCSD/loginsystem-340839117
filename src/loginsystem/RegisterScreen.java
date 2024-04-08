@@ -157,13 +157,15 @@ public class RegisterScreen extends javax.swing.JFrame {
             regLable2.setText(" ");
         } else if (result == 2) {
             regLable.setText("Password must be 8 characters long, include a lowercase letter, uppercase letter, and a number.");
-            regLable2.setText("It must not include commas and not be easly guessed.");
+            regLable2.setText("It must not include commas and must not be easly guessed.");
         } else if (result == 3) {
             regLable.setText("You have sucessfully registered");
             regLable2.setText(" ");
         } else if (result == 4) {
             regLable.setText("There has been an error registering this user. Please try again");
             regLable2.setText(" ");
+        }else if (result == 5){
+            regLable2.setText("Commas cannot be present in any of your fields");
         }
 
 
