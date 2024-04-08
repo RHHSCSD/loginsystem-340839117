@@ -186,28 +186,35 @@ public class LoginSystem {
      * @return true if password is strong, false if not
      */
     public static boolean isStrongPassword(String password) {
-        boolean uppercase = false;
-        boolean lowercase = false;
+        boolean upperCase = false;
+        boolean lowerCase = false;
         boolean number = false;
         boolean specialChar = false;
+        //Create a string of special characters to reference
         String specialChars = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿×÷";
 
+        //For every letter in the password...
         for (int i = 0; i < password.length(); i++) {
             char current = password.charAt(i);
+            //if it is upper case, set upperCase true
             if (Character.isUpperCase(current)) {
-                uppercase = true;
+                upperCase = true;
             }
+            // if it is lower case, set lowerCase true
             if (Character.isLowerCase(current)) {
-                lowercase = true;
+                lowerCase = true;
             }
+            // if it is a numeric, set number true
             if (Character.isDigit(current)) {
                 number = true;
             }
+            //if it is present in the string of characters, set specialChar true
             if (specialChars.indexOf(current) != -1) {
                 specialChar = true;
             }
         }
-        return (password.length() >= 8 && uppercase && lowercase && number && specialChar);
+        //if password is longer than 7 characters, and all other conditions are met, return true. if even one is not met, return false
+        return (password.length() >= 8 && upperCase && lowerCase && number && specialChar);
     }
 
     /**
