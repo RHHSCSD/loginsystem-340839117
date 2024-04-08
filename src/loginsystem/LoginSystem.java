@@ -38,7 +38,8 @@ public class LoginSystem {
      * @return an integer based on the result of attempting to register a new
      * user. 1 means the username is already in use. 2 means the password is
      * invalid. 3 means the registration was successful. 4 means there was an
-     * error reading from the file of banned passwords. 5 means one of the inputs contains the delimiter
+     * error reading from the file of banned passwords. 5 means one of the
+     * inputs contains the delimiter
      */
     public static int register(String firstName, String lastName, String username, String password, String email) {
         // if isUnique does not return true, return one
@@ -48,9 +49,9 @@ public class LoginSystem {
         else if (!isStrongPassword(password) || isBanned(password)) {
             return 2;
             //if any of the imputs contain the delimiter, return 5.
-        }else if(!isDelimiterFree(password) || !isDelimiterFree(firstName)|| !isDelimiterFree(lastName)|| !isDelimiterFree(username)|| !isDelimiterFree(email) ){
+        } else if (!isDelimiterFree(password) || !isDelimiterFree(firstName) || !isDelimiterFree(lastName) || !isDelimiterFree(username) || !isDelimiterFree(email)) {
             return 5;
-        }else {
+        } else {
             try {
                 //Create an instance of print writer to append to the UserInfo file
                 PrintWriter pw = new PrintWriter(new FileWriter(USER_INFO_FILE, true));
@@ -227,7 +228,9 @@ public class LoginSystem {
     public static boolean isBanned(String password) {
         try {
             Scanner s = new Scanner(BANNED_PASSWORD_FILE);
+            //while the dictbadpass.txt file has a next line...
             while (s.hasNext()) {
+                // if that next line matches the inputed password, return true
                 if (s.nextLine().equals(password)) {
                     return true;
                 }
@@ -235,8 +238,10 @@ public class LoginSystem {
             s.close();
         } catch (IOException e) {
             System.out.println("File not found");
+            // if there is an error, return true as it indicates an unsuccessful login
             return true;
         }
+        //if there is no match, return false
         return false;
     }
 
@@ -249,13 +254,7 @@ public class LoginSystem {
      * @return true if the password is delimiter free, false if not
      */
     public static boolean isDelimiterFree(String password) {
-        //for every character in 
-        for (int i = 0; i < password.length(); i++) {
-            if (password.contains(DELIMITER)) {
-                return false;
-            }
-        }
-        return true;
+        //if the password contains the delimiter, return true. if not return false.
+        return(password.contains(DELIMITER));
     }
-
 }
