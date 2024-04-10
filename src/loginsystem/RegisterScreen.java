@@ -150,8 +150,9 @@ public class RegisterScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegConfirmActionPerformed
+        LoginSystem l = new LoginSystem();
         //When register button is pushed, attempt to register a new user. Based on the returned result, display appropriate message.
-        int result = LoginSystem.register(regFirstName.getText(), regLastName.getText(), regUsername.getText(), regPassword.getText(), regEmail.getText());
+        int result = l.register(regFirstName.getText(), regLastName.getText(), regUsername.getText(), regPassword.getText(), regEmail.getText());
         if (result == 1) {
             regLable.setText("Username is already in use. Please try another.");
             regLable2.setText(" ");

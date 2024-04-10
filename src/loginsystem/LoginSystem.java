@@ -22,7 +22,7 @@ public class LoginSystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println(register("jaden","WIckens","340839117","Ykppfw4m.","66wickens@gmail.com"));
+        //Nothing happens here
     }
 
     /**
@@ -41,7 +41,7 @@ public class LoginSystem {
      * error reading from the file of banned passwords. 5 means one of the
      * inputs contains the delimiter
      */
-    public static int register(String firstName, String lastName, String username, String password, String email) {
+    public int register(String firstName, String lastName, String username, String password, String email) {
         // if isUnique does not return true, return one
         if (!isUnique(username)) {
             return 1;
@@ -53,10 +53,11 @@ public class LoginSystem {
             return 5;
         } else {
             try {
+                int random = (int)(Math.random()*1000);
                 //Create an instance of print writer to append to the UserInfo file
                 PrintWriter pw = new PrintWriter(new FileWriter(USER_INFO_FILE, true));
                 // Write user information to the file with delimiters
-                pw.println(firstName + DELIMITER + lastName + DELIMITER + username + DELIMITER + encrypt(password) + DELIMITER + email);
+                pw.println(firstName + DELIMITER + lastName + DELIMITER + username + DELIMITER + encrypt(password+random) + DELIMITER + email + DELIMITER + random);
                 pw.close();
                 System.out.println("Registration successful.");
                 //return 3 to indicate successful registration
@@ -77,7 +78,7 @@ public class LoginSystem {
      * @param username the users input attempt for a username
      * @return true if username and password are valid, false if not.
      */
-    public static boolean login(String password, String username) {
+    public boolean login(String password, String username) {
         try {
             //open new scanner from the UserInfo file
             Scanner s = new Scanner(USER_INFO_FILE);
@@ -87,7 +88,7 @@ public class LoginSystem {
                 String line = s.nextLine();
                 String[] userInfo = line.split(DELIMITER);
                 //Check if the inputted username & password matches a username & password from the file
-                if (userInfo[2].equals(username) && userInfo[3].equals(encrypt(password))) {
+                if (userInfo[2].equals(username) && userInfo[3].equals(encrypt(password+userInfo[5]))) {
                     //return true if a match is found
                     return true;
                 }
@@ -106,7 +107,7 @@ public class LoginSystem {
      * @param password the users inputted password
      * @return the encrypted password
      */
-    public static String encrypt(String password) {
+    public String encrypt(String password) {
         try {
             //java helper class to perform encryption 
             MessageDigest md = MessageDigest.getInstance("SHA-256"); //give the helper function the password 
@@ -130,7 +131,7 @@ public class LoginSystem {
      *
      * @return an array list of users
      */
-    public static ArrayList<User> loadUser() {
+    public ArrayList<User> loadUser() {
         //Create an empty array list of users
         ArrayList<User> users = new ArrayList<User>();
         try {
@@ -156,7 +157,7 @@ public class LoginSystem {
      * @param username the username to verify
      * @return true if the username is unique, false if not
      */
-    public static boolean isUnique(String username) {
+    public boolean isUnique(String username) {
 
         try {
             Scanner s = new Scanner(USER_INFO_FILE);
@@ -186,7 +187,7 @@ public class LoginSystem {
      * @param password
      * @return true if password is strong, false if not
      */
-    public static boolean isStrongPassword(String password) {
+    public boolean isStrongPassword(String password) {
         boolean upperCase = false;
         boolean lowerCase = false;
         boolean number = false;
@@ -225,7 +226,7 @@ public class LoginSystem {
      * @param password the users inputted passwords
      * @return true if the password is banned, false if not.
      */
-    public static boolean isBanned(String password) {
+    public boolean isBanned(String password) {
         try {
             Scanner s = new Scanner(BANNED_PASSWORD_FILE);
             //while the dictbadpass.txt file has a next line...
@@ -253,8 +254,8 @@ public class LoginSystem {
      * @param password the users inputted passwords
      * @return true if the password is delimiter free, false if not
      */
-    public static boolean isDelimiterFree(String password) {
+    public boolean isDelimiterFree(String password) {
         //if the password contains the delimiter, return true. if not return false.
-        return(password.contains(DELIMITER));
+        return (password.contains(DELIMITER));
     }
 }
