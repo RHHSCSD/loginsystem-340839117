@@ -22,7 +22,7 @@ public class LoginSystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // Nothing is found in this meain method
+        System.out.println(register("jaden","WIckens","340839117","Ykppfw4m.","66wickens@gmail.com"));
     }
 
     /**
@@ -49,7 +49,7 @@ public class LoginSystem {
         else if (!isStrongPassword(password) || isBanned(password)) {
             return 2;
             //if any of the imputs contain the delimiter, return 5.
-        } else if (!isDelimiterFree(password) || !isDelimiterFree(firstName) || !isDelimiterFree(lastName) || !isDelimiterFree(username) || !isDelimiterFree(email)) {
+        } else if (isDelimiterFree(password) || isDelimiterFree(firstName) || isDelimiterFree(lastName) || isDelimiterFree(username) || isDelimiterFree(email)) {
             return 5;
         } else {
             try {
