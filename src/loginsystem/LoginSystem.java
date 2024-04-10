@@ -53,11 +53,20 @@ public class LoginSystem {
             return 5;
         } else {
             try {
-                int random = (int) (Math.random() * 1000);
+                
+                String alphabet = "abcdefghijklmnopqrstuvwxyz";
+                String salt = "";
+                //loop 8 times to cerate an 8 letter string
+                for (int i = 0; i < 8; i++) {
+                    //generate a random number between 0 and 25
+                    int randomIndex = (int) (Math.random() * 26);
+                    // add the letter at the random index to the end of the salt
+                    salt += alphabet.charAt(randomIndex);
+                }
                 //Create an instance of print writer to append to the UserInfo file
                 PrintWriter pw = new PrintWriter(new FileWriter(USER_INFO_FILE, true));
                 // Write user information to the file with delimiters
-                pw.println(firstName + DELIMITER + lastName + DELIMITER + username + DELIMITER + encrypt(password + random) + DELIMITER + email + DELIMITER + random);
+                pw.println(firstName + DELIMITER + lastName + DELIMITER + username + DELIMITER + encrypt(password + salt) + DELIMITER + email + DELIMITER + salt);
                 pw.close();
                 System.out.println("Registration successful.");
                 //return 3 to indicate successful registration

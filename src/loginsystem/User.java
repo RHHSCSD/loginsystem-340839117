@@ -15,6 +15,7 @@ public class User {
     private String username;
     private final String password;
     private String email;
+    private String salt;
 
     /**
      * A constructor to create a new instance of User
@@ -25,13 +26,14 @@ public class User {
      * @param password the users inputted password
      * @param email the users inputted email
      */
-    public User(String firstName, String lastName, String username, String password, String email) {
+    public User(String firstName, String lastName, String username, String password, String email, String salt) {
         //Set all relevant fields based on user input
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.email = email;
+        this.salt = salt;
     }
 
     /**
@@ -46,6 +48,7 @@ public class User {
         this.email = userInput[2];
         this.username = userInput[3];
         this.password = userInput[4];
+        this.salt = userInput[5];
     }
 
     /**
