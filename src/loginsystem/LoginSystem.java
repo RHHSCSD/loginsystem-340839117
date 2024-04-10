@@ -53,11 +53,11 @@ public class LoginSystem {
             return 5;
         } else {
             try {
-                int random = (int)(Math.random()*1000);
+                int random = (int) (Math.random() * 1000);
                 //Create an instance of print writer to append to the UserInfo file
                 PrintWriter pw = new PrintWriter(new FileWriter(USER_INFO_FILE, true));
                 // Write user information to the file with delimiters
-                pw.println(firstName + DELIMITER + lastName + DELIMITER + username + DELIMITER + encrypt(password+random) + DELIMITER + email + DELIMITER + random);
+                pw.println(firstName + DELIMITER + lastName + DELIMITER + username + DELIMITER + encrypt(password + random) + DELIMITER + email + DELIMITER + random);
                 pw.close();
                 System.out.println("Registration successful.");
                 //return 3 to indicate successful registration
@@ -88,7 +88,7 @@ public class LoginSystem {
                 String line = s.nextLine();
                 String[] userInfo = line.split(DELIMITER);
                 //Check if the inputted username & password matches a username & password from the file
-                if (userInfo[2].equals(username) && userInfo[3].equals(encrypt(password+userInfo[5]))) {
+                if (userInfo[2].equals(username) && userInfo[3].equals(encrypt(password + userInfo[5]))) {
                     //return true if a match is found
                     return true;
                 }

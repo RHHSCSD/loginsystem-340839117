@@ -165,7 +165,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         } else if (result == 4) {
             regLable.setText("There has been an error registering this user. Please try again");
             regLable2.setText(" ");
-        }else if (result == 5){
+        } else if (result == 5) {
             regLable2.setText("Commas cannot be present in any of your fields");
         }
 
