@@ -17,6 +17,7 @@ public class LoginSystem {
     private static final String DELIMITER = ",";
     private static final File USER_INFO_FILE = new File("UserInfo.txt");
     private static final File BANNED_PASSWORD_FILE = new File("dictbadpass.txt");
+    private static final File AVAILABLE_CODENAMES_FILE = new File("dictionary.txt");
 
     /**
      * @param args the command line arguments
@@ -43,17 +44,21 @@ public class LoginSystem {
      */
     public int register(String firstName, String lastName, String username, String password, String email) {
         // if isUnique does not return true, return one
+        Searching j = new Searching();
+        int index = j.binarySearch(username, getNameList());
         if (!isUnique(username)) {
-            return 1;
+            return -1;
         } // if the password is not strongor is banned, return 2
         else if (!isStrongPassword(password) || isBanned(password)) {
-            return 2;
+            return -2;
             //if any of the imputs contain the delimiter, return 5.
         } else if (isDelimiterFree(password) || isDelimiterFree(firstName) || isDelimiterFree(lastName) || isDelimiterFree(username) || isDelimiterFree(email)) {
-            return 5;
+            return -5;
+        } else if (index<0) {
+            return -3;
         } else {
             try {
-                
+
                 String alphabet = "abcdefghijklmnopqrstuvwxyz";
                 String salt = "";
                 //loop 8 times to cerate an 8 letter string
@@ -70,11 +75,11 @@ public class LoginSystem {
                 pw.close();
                 System.out.println("Registration successful.");
                 //return 3 to indicate successful registration
-                return 3;
+                return index;
             } catch (IOException e) {
                 System.err.println("Error occured wrighting to the file");
                 //return 4 to indicate errors
-                return 4;
+                return -4;
             }
         }
     }
@@ -267,4 +272,29 @@ public class LoginSystem {
         //if the password contains the delimiter, return true. if not return false.
         return (password.contains(DELIMITER));
     }
+
+    public static String[] getNameList() {
+        int stringLength = 0;
+        try {
+            Scanner s = new Scanner(AVAILABLE_CODENAMES_FILE);
+            //While the text file has a next line, turn that next line into a string.
+            while (s.hasNext()) {
+                s.nextLine();
+                stringLength++;
+            }
+            s.close();
+            s = new Scanner(AVAILABLE_CODENAMES_FILE);
+            String[] nameList = new String[stringLength];
+            for (int i = 0; i < stringLength; i++) {
+                nameList[i] = s.nextLine();
+            }
+            s.close();
+            return nameList;
+
+        } catch (IOException e) {
+            System.out.println("Error Reading From File");
+        }
+        return null;
+    }
+
 }

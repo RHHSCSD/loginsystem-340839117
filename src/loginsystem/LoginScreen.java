@@ -116,7 +116,7 @@ public class LoginScreen extends javax.swing.JFrame {
     private void loginConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginConfirmActionPerformed
         LoginSystem l = new LoginSystem();
         // When the login button is pushed, Attempt loogin and display message based on results.
-        if (l.login(loginPass.getText(), loginUser.getText())) {
+        if (l.login(loginPass.getText(), loginUser.getText().toLowerCase())) {
             loginMessage.setText("You are successfully logged in!");
         } else {
             loginMessage.setText("Ussername or Password did not match. Please try again:");
