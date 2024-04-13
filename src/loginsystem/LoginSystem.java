@@ -18,12 +18,27 @@ public class LoginSystem {
     private static final File USER_INFO_FILE = new File("UserInfo.txt");
     private static final File BANNED_PASSWORD_FILE = new File("dictbadpass.txt");
     private static final File AVAILABLE_CODENAMES_FILE = new File("dictionary.txt");
+    private ArrayList<User> users = new ArrayList<>();
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         //Nothing happens here
+        LoginSystem l = new LoginSystem();
+        l.register ("one","Wickens1","advance","Ykppfw4m.","email1");
+        l.register ("two","Wickens2","misunderstand","Ykppfw4m.","email2");
+        l.register ("three","Wickens3","pop","Ykppfw4m.","email3");
+        l.register ("four","Wickens4","responsibility","Ykppfw4m.","email4");
+        l.register ("five","Wickens5","determine","Ykppfw4m.","email5");
+        l.register ("six","Wickens6","employee","Ykppfw4m.","email6");
+        l.register ("seven","Wickens7","damaging","Ykppfw4m.","email7");
+        l.register ("eight","Wickens8","studied","Ykppfw4m.","email8");
+        l.register ("nine","Wickens9","accorded","Ykppfw4m.","email9");
+        l.loadUser();
+        l.sortUsers();
+        l.updateFile();
+        
     }
 
     /**
@@ -54,7 +69,7 @@ public class LoginSystem {
             //if any of the imputs contain the delimiter, return 5.
         } else if (isDelimiterFree(password) || isDelimiterFree(firstName) || isDelimiterFree(lastName) || isDelimiterFree(username) || isDelimiterFree(email)) {
             return -5;
-        } else if (index<0) {
+        } else if (index < 0) {
             return -3;
         } else {
             try {
@@ -145,7 +160,7 @@ public class LoginSystem {
      *
      * @return an array list of users
      */
-    public ArrayList<User> loadUser() {
+    public void loadUser() {
         //Create an empty array list of users
         ArrayList<User> users = new ArrayList<User>();
         try {
@@ -162,7 +177,7 @@ public class LoginSystem {
             System.out.println("Error Reading From File");
         }
         //return the filled array list of users
-        return users;
+        this.users = users;
     }
 
     /**
@@ -273,7 +288,7 @@ public class LoginSystem {
         return (password.contains(DELIMITER));
     }
 
-    public static String[] getNameList() {
+    public String[] getNameList() {
         int stringLength = 0;
         try {
             Scanner s = new Scanner(AVAILABLE_CODENAMES_FILE);
@@ -297,4 +312,33 @@ public class LoginSystem {
         return null;
     }
 
+        public void sortUsers() {
+        for (int i = 1; i < users.size(); i++) {
+            User tempUser = users.get(i);
+            int indexSave = i;
+            for (int j = i - 1; j >= 0; j--) {
+                if (tempUser.getUsername().compareTo(users.get(j).getUsername()) < 0) {
+                    users.set(j + 1, users.get(j));
+                }else{
+                    break;
+                }
+                indexSave = j;
+            }
+            users.set(indexSave, tempUser);
+        }
+    }
+
+
+    public void updateFile() {
+        try {
+            PrintWriter pw = new PrintWriter(USER_INFO_FILE);
+            for (int i = 0; i < users.size(); i++) {
+                User tempUser = users.get(i);
+                pw.println(tempUser.getFirstName() + DELIMITER + tempUser.getLastName() + DELIMITER + tempUser.getUsername() + DELIMITER + tempUser.getPassword() + DELIMITER + tempUser.getEmail() + DELIMITER + tempUser.getSalt());
+            }
+            pw.close();
+        } catch (IOException e) {
+            System.out.println("Error Writing To File");
+        }
+    }
 }

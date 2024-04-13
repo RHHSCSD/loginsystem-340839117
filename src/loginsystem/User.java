@@ -45,9 +45,9 @@ public class User {
         //Set all relevant fields based on user input
         this.firstName = userInput[0];
         this.lastName = userInput[1];
-        this.email = userInput[2];
-        this.username = userInput[3];
-        this.password = userInput[4];
+        this.username = userInput[2];
+        this.password = userInput[3];
+        this.email = userInput[4];
         this.salt = userInput[5];
     }
 
@@ -85,6 +85,14 @@ public class User {
      */
     public String getEmail() {
         return email;
+    }
+    
+    public String getPassword() {
+        return password;
+    }
+    
+    public String getSalt() {
+        return salt;
     }
 
     /**
