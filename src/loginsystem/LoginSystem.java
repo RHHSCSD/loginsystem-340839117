@@ -26,19 +26,19 @@ public class LoginSystem {
     public static void main(String[] args) {
         //Nothing happens here
         LoginSystem l = new LoginSystem();
-        l.register ("one","Wickens1","advance","Ykppfw4m.","email1");
-        l.register ("two","Wickens2","misunderstand","Ykppfw4m.","email2");
-        l.register ("three","Wickens3","pop","Ykppfw4m.","email3");
-        l.register ("four","Wickens4","responsibility","Ykppfw4m.","email4");
-        l.register ("five","Wickens5","determine","Ykppfw4m.","email5");
-        l.register ("six","Wickens6","employee","Ykppfw4m.","email6");
-        l.register ("seven","Wickens7","damaging","Ykppfw4m.","email7");
-        l.register ("eight","Wickens8","studied","Ykppfw4m.","email8");
-        l.register ("nine","Wickens9","accorded","Ykppfw4m.","email9");
+        l.register("one", "Wickens1", "advance", "Ykppfw4m.", "email1");
+        l.register("two", "Wickens2", "misunderstand", "Ykppfw4m.", "email2");
+        l.register("three", "Wickens3", "pop", "Ykppfw4m.", "email3");
+        l.register("four", "Wickens4", "responsibility", "Ykppfw4m.", "email4");
+        l.register("five", "Wickens5", "determine", "Ykppfw4m.", "email5");
+        l.register("six", "Wickens6", "employee", "Ykppfw4m.", "email6");
+        l.register("seven", "Wickens7", "damaging", "Ykppfw4m.", "email7");
+        l.register("eight", "Wickens8", "studied", "Ykppfw4m.", "email8");
+        l.register("nine", "Wickens9", "accorded", "Ykppfw4m.", "email9");
         l.loadUser();
         l.sortUsers();
         l.updateFile();
-        
+
     }
 
     /**
@@ -312,14 +312,14 @@ public class LoginSystem {
         return null;
     }
 
-        public void sortUsers() {
+    public void sortUsers() {
         for (int i = 1; i < users.size(); i++) {
             User tempUser = users.get(i);
             int indexSave = i;
             for (int j = i - 1; j >= 0; j--) {
                 if (tempUser.getUsername().compareTo(users.get(j).getUsername()) < 0) {
                     users.set(j + 1, users.get(j));
-                }else{
+                } else {
                     break;
                 }
                 indexSave = j;
@@ -327,7 +327,6 @@ public class LoginSystem {
             users.set(indexSave, tempUser);
         }
     }
-
 
     public void updateFile() {
         try {
